@@ -1,4 +1,4 @@
-from codeFiles.add_subtract import add, subtract
+from codeFiles.sample1_add_subtract import add, subtract
 
 def test_add():
     assert add(3, 4) == 7
