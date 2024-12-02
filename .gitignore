@@ -30,3 +30,5 @@ check_venv
 src/__pycache__/
 src/.pytest_cache/
 src/templates/
+
+src/.env

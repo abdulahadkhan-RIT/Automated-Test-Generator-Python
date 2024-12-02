@@ -1,7 +1,10 @@
+import pytest
 from codeFiles.sample1_add_subtract import add, subtract
 
 def test_add():
-    assert add(3, 4) == 7
+    """Tests the add function."""
+    assert add('a_example', 'b_example') == 'expected_value'
 
 def test_subtract():
-    assert subtract(4, 3) == 1
+    """Tests the subtract function."""
+    assert subtract('a_example', 'b_example') == 'expected_value'

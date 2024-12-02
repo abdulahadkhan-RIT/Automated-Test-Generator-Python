@@ -5,8 +5,6 @@ class MathOperations:
 
     def divide(self, a, b):
         """Returns the division of a by b. Raises ValueError if b is zero."""
-        if b == 0:
-            raise ValueError("Division by zero is not allowed.")
         return a / b
 
     def is_prime(self, n):

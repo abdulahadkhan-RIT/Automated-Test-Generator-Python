@@ -4,7 +4,6 @@ class CodeParser:
     def __init__(self, code):
         self.tree = ast.parse(code)
 
-    # Extract all function names and their arguments.
     def get_functions(self):
         functions = []
         for node in ast.walk(self.tree):
@@ -19,21 +18,29 @@ class CodeParser:
                 })
         return functions
 
-    # Extract all class names and their methods.
+    
     def get_classes(self):
+        # Extract all class names and their methods.
         classes = []
         for node in ast.walk(self.tree):
             if isinstance(node, ast.ClassDef):
                 methods = []
                 for item in node.body:
                     if isinstance(item, ast.FunctionDef):
+                        method_type = 'instance'
+                        if any(isinstance(deco, ast.Name) and deco.id == 'staticmethod' for deco in item.decorator_list):
+                            method_type = 'staticmethod'
+                        elif any(isinstance(deco, ast.Name) and deco.id == 'classmethod' for deco in item.decorator_list):
+                            method_type = 'classmethod'
+
                         args = [arg.arg for arg in item.args.args if arg.arg != 'self']
                         return_type = self._get_return_type(item)
                         docstring = ast.get_docstring(item) or "No description available"
                         methods.append({
                             'name': item.name,
                             'args': args,
-                            'type_hints': f"{docstring} Returns: {return_type}"
+                            'type_hints': f"{docstring} Returns: {return_type}",
+                            'method_type': method_type
                         })
                 classes.append({
                     'name': node.name,

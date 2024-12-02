@@ -1,36 +1,36 @@
 import pytest
 
-# Auto-generated test cases
-# Modify values and assertions to align with actual function behavior
+from codeFiles.sample3_mathOperations import factorial, fibonacci, MathOperations
 
-from sample3_mathOperations import factorial, fibonacci, add, divide, is_prime, MathOperations
+math = MathOperations()
 
 def test_factorial():
-    """Returns the factorial of a number n. Raises ValueError for negative inputs. Returns: Any"""
-    # TODO: Replace placeholders with actual values
-    assert factorial('n_example') == 'expected_value'
+    assert factorial(5) == 120
+    assert factorial(0) == 1
+    assert factorial(1) == 1
+    assert factorial(10) == 3628800
 
 def test_fibonacci():
-    """Returns the nth Fibonacci number. Raises ValueError if n is negative. Returns: Any"""
-    # TODO: Replace placeholders with actual values
-    assert fibonacci('n_example') == 'expected_value'
+    assert fibonacci(5) == 5
+    assert fibonacci(1) == 1
+    assert fibonacci(20) == 6765
+    assert fibonacci(0) == 0
+    assert fibonacci(50) == 12586269025
 
 def test_add():
-    """Returns the sum of a and b. Returns: Any"""
-    # TODO: Replace placeholders with actual values
-    assert add('a_example', 'b_example') == 'expected_value'
+    assert math.add(3, 5) == 8
+    assert math.add(-1, 1) == 0
+    assert math.add(0, 0) == 0
 
 def test_divide():
-    """Returns the division of a by b. Raises ValueError if b is zero. Returns: Any"""
-    # TODO: Replace placeholders with actual values
-    assert divide('a_example', 'b_example') == 'expected_value'
+    assert math.divide(10, 2) == 5
+    assert math.divide(0, 5) == 0
+    assert math.divide(-10, 2) == -5
+    with pytest.raises(ZeroDivisionError):
+        math.divide(5, 0)
 
 def test_is_prime():
-    """Checks if a number n is prime. Returns: Any"""
-    # TODO: Replace placeholders with actual values
-    assert is_prime('n_example') == 'expected_value'
-
-def test_MathOperations():
-    instance = MathOperations()
-    assert instance is not None
-    assert instance is not None
+    assert math.is_prime(7) == True
+    assert math.is_prime(1) == False
+    assert math.is_prime(2) == True
+    assert math.is_prime(0) == False
